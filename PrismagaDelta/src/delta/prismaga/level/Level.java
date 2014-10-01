@@ -11,7 +11,7 @@ public class Level {
 	
 	private int[][] tiles;
 	private BufferedImage background = FileUtils.loadAsImage("/background.png");
-	private int w, h;
+	public int xo, yo, x0, y0, x1, y1, w, h;
 	
 	public Level(BufferedImage levelImage) {
 		loadLevel(levelImage);
@@ -44,13 +44,13 @@ public class Level {
 	}
 	 
 	public void tick() {
-		int xo = Game.player.xOffset;
-		int yo = Game.player.yOffset;
+		xo = Game.player.xOffset;
+		yo = Game.player.yOffset;
 		
-		int x0 = Math.max(xo / (Game.TILESIZE * Game.SCALE), 0);
-		int y0 = Math.max(yo / (Game.TILESIZE * Game.SCALE), 0);
-		int x1 = Math.min((xo + Game.WIDTH * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, w);
-		int y1 = Math.min((yo + Game.HEIGHT * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, h);
+		x0 = Math.max(xo / (Game.TILESIZE * Game.SCALE), 0);
+		y0 = Math.max(yo / (Game.TILESIZE * Game.SCALE), 0);
+		x1 = Math.min((xo + Game.WIDTH * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, w);
+		y1 = Math.min((yo + Game.HEIGHT * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, h);
 		
 		for(int y = y0; y < y1; y++) {
 			for(int x = x0; x < x1; x++) {
@@ -63,13 +63,13 @@ public class Level {
 		
 		Game.g.drawImage(background, 0, 0, background.getWidth() * Game.SCALE, background.getHeight() * Game.SCALE, null);
 		
-		int xo = Game.player.xOffset;
-		int yo = Game.player.yOffset;
+		xo = Game.player.xOffset;
+		yo = Game.player.yOffset;
 
-		int x0 = Math.max(xo / (Game.TILESIZE * Game.SCALE), 0);
-		int y0 = Math.max(yo / (Game.TILESIZE * Game.SCALE), 0);
-		int x1 = Math.min((xo + Game.WIDTH * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, w);
-		int y1 = Math.min((yo + Game.HEIGHT * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, h);
+		x0 = Math.max(xo / (Game.TILESIZE * Game.SCALE), 0);
+		y0 = Math.max(yo / (Game.TILESIZE * Game.SCALE), 0);
+		x1 = Math.min((xo + Game.WIDTH * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, w);
+		y1 = Math.min((yo + Game.HEIGHT * Game.SCALE) / (Game.TILESIZE * Game.SCALE) + 1, h);
 		
 		for(int y = y0; y < y1; y++) {
 			for(int x = x0; x < x1; x++) {

@@ -25,8 +25,8 @@ public class Player extends MapObject {
 		this.xOffset = 0;
 		this.yOffset = 0;
 		
-		this.x = Game.WIDTH * Game.SCALE / 2;
-		this.y = Game.HEIGHT * Game.SCALE / 2;
+		this.x = Game.WIDTH * Game.SCALE / 2 - getWidth();
+		this.y = Game.HEIGHT * Game.SCALE / 2 - getHeight();
 	}
 	
 	public void tick() {
@@ -36,22 +36,30 @@ public class Player extends MapObject {
 		yspeed = 0;
 		
 		if(input.keys[KeyEvent.VK_UP]) {
-			yspeed -= 3;
+			yspeed -= 4;
 		} else if(input.keys[KeyEvent.VK_DOWN]){
-			yspeed += 3;
+			yspeed += 4;
 		}
 		
 		if(input.keys[KeyEvent.VK_LEFT]) {
-			xspeed -= 3;
+			xspeed -= 4;
 		} else if(input.keys[KeyEvent.VK_RIGHT]) {
-			xspeed += 3;
+			xspeed += 4;
 		}
 		
 		move(xspeed, yspeed);
 	}
 	
 	public void move(int xs, int ys) {
-		if(!collision(xs, 0)) {xOffset += xs;}
+		if(Game.level.x0 >= 0){
+			if(!collision(xs, 0)) {
+				xOffset += xs;
+			}
+		} else if(Game.level.x0 <= 0) {
+			if(!collision(xs, 0)) {
+				x += xs;
+			}
+		}
 		if(!collision(0, ys)) {yOffset += ys;}
 	}
 	
